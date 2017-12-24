@@ -1,14 +1,52 @@
 atm
 ======
 
-Adding a classifier
--------------------
+Adding a classification method
+------------------------------
 
-The classifier must be a python class that has the following functions:
+ATM makes it easy to add new methods for classification. 
 
-1) ``fit``: given training data and labels, learns the model
-2) ``predict``: given data sample(s), predicts the label(s)
+The method must be implemented by a python class that has the following functions:
 
+1) ``fit``: given training data and labels (X and y), learn a predictive model
+2) ``predict``: given unlabeled feature vectors (X), predict the corresponding labels
+
+This follows the convention used by `scikit-learn <http://scikit-learn.org/stable/>`_, and most of the classifier methods already included with ATM are ``sklearn`` classes. However, any custom python class that implements the fit/predict interface can be used with ATM.
+
+1. Creating the JSON file
+-------------------------
+{   
+    "name": "bnb",
+    "class": "sklearn.naive_bayes.BernoulliNB",
+    "parameters": {...},
+    "root_parameters": [...],
+    "conditions": {...}
+}
+
+        "alpha": {
+            "type": "float",
+            "range": [0.0, 1.0]
+        },
+
+        "kernel": {
+            "type": "string",
+            "range": ["constant", "rbf", "matern"]
+        },
+
+    "root_parameters": ["kernel"],
+
+    "conditions": {
+        "kernel": {
+            "matern": ["nu"],
+            "rational_quadratic": ["length_scale", "alpha"],
+            "exp_sine_squared": ["length_scale", "periodicity"]
+        }
+    }
+
+
+2. (Optional) Adding a method to the ATM library
+------------------------------------------------
+If you would like your classifier to be included as one of the 
 
 In ``atm/mapping.py``, enter the function in the ``LEARNER_CODE_CLASS_MAP`` variable and the classifier enumerator (see below) in the ``ENUMERATOR_CODE_CLASS_MAP`` variable.
 Decide a code for the classifier (e.g., classify_knn) and enter this in the ``__init__.py`` file in ``atm/enumeration/classification``.
