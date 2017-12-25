@@ -58,51 +58,8 @@ a) define the ranges of the parameters in a variable called ``DEFAULT_RANGES``
 b) define the parameter types (int, float, etc.) in a variable called ``DEFAULT_KEYS``
 c) define the Conditional Parameter Tree (CPT) in a function called ``create_cpt``
 
-.. code:: python
-
-  from atm.cpt import Choice, Combination
-  from atm.enumeration import Enumerator
-  from atm.enumeration.classification import ClassifierEnumerator
-  from atm.key import Key, KeyStruct
-  import numpy as np
-
-  class EnumeratorExample(ClassifierEnumerator):
-
-      DEFAULT_RANGES = {
-          "param_int" : (a, b),
-          "param_categorical" : ('category1', 'category2'),
-          "param_float" : (c, d),
-      }
-
-      DEFAULT_KEYS = {
-          # KeyStruct(range, key_type, is_categorical)
-          "param_int" : KeyStruct(DEFAULT_RANGES["param_int"], Key.TYPE_INT, False),
-          "param_categorical" : KeyStruct(DEFAULT_RANGES["param_categorical"], Key.TYPE_STRING, True),
-          "param_float" : KeyStruct(DEFAULT_RANGES["param_float"], Key.TYPE_FLOAT, False),
-      }
-
-      def __init__(self, ranges=None, keys=None):
-          super(EnumeratorExample, self).__init__(
-              ranges or EnumeratorExample.DEFAULT_RANGES, keys or EnumeratorExample.DEFAULT_KEYS)
-          self.code = ClassifierEnumerator.Example
-          self.create_cpt()
-
-      def create_cpt(self):
-          param_int = Choice("param_int", self.ranges["param_int"])
-          param_categorical = Choice("param_categorical", self.ranges["param_categorical"])
-          param_float = Choice("param_float", self.ranges["param_float"])
-
-          # if param_categorical==A, then param_float is active
-          param_categorical.add_condition('A', [param_float])
-
-          example = Combination([param_int, param_categorical])
-          exampleroot = Choice("function", ["classify_code"])
-          exampleroot.add_condition("classify_code", [example])
-
-          self.root = exampleroot
 
 Since sklearn uses consistent framework across classifiers (fit, predict, etc.), atm creates a pipeline with the classifier and uses the sklearn standard framework to learn the classifier and make predictions.
-
 
 
 Adding a Parameter Selector

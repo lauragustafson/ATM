@@ -1,11 +1,17 @@
 Tutorial
 ========
 
-Data Format
------------
+Creating a Dataset
+------------------
+A Dataset in ATM is defined by the following fields:
+
+
+Data format
+^^^^^^^^^^^
+
 ATM takes data in CSV format where each CSV file needs to:
 
-* Have the first line of the file be headers with strings as the feature names, and the class column named "class". If the features aren't named (ie, image or SVD or PCA data), then anything will do (but see below for a small script to generate nice feature names).
+* Have the first line of the file be headers with strings as the feature names, and the class column named "class" (or configured otherwise in run_config.yaml). If the features aren't named (ie, image or SVD or PCA data), then anything will do (but see below for a small script to generate nice feature names).
 * Should have N + 1 rows (1 header + N examples)
 * Should have D + 1 features (1 class label + D features per example)
 
@@ -27,8 +33,8 @@ Here's a handy Python script to create a CSV header line for data that doesn't h
         return separator.join([class_label_name, header_row_string])
 
 
-Creating a DataRun in DataHub
------------------------------
+Creating a DataRun in the DataHub
+---------------------------------
 
 Once your data in the proper format, you can upload it to the DataHub for processing.
 

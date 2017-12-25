@@ -30,7 +30,7 @@ The required packages are:
 
 
 2. Database Setup
---------------
+-----------------
 
 On Ubuntu, SQLite3 can be installed with the command::
 
