@@ -21,6 +21,7 @@ Once you have a class, you need to configure the relevant hyperparameters and te
 All configuration for a classification method must be described in a json file with the following format:
 
 .. code-block:: javascript
+
     {
         "name": "bnb",
         "class": "sklearn.naive_bayes.BernoulliNB",
@@ -38,6 +39,7 @@ For categorical types ("bool", "string", "int_cat", and "float_cat"), "range" is
 Example categorical types:
 
 .. code-block:: javascript
+
     "nu": {
         "type": "float_cat",
         "range": [0.5, 1.5, 2.5]  // will select one of the listed values
@@ -51,6 +53,7 @@ Example categorical types:
 Example numeric type:
 
 .. code-block:: javascript
+
     "max_depth": {
         "type": "int",
         "range": [2, 10]   // will select integer values uniformly at random between 2 and 10, inclusive
@@ -59,6 +62,7 @@ Example numeric type:
 Example exponential type:
 
 .. code-block:: javascript
+
     "length_scale": {
         "type": "float_exp",
         "range": [1e-5, 1e5]  // will select floating-point values from an exponential distribution between 10^-5 and 10^5, inclusive
@@ -66,7 +70,9 @@ Example exponential type:
 
 
 There are two kinds of hyperparameters: root parameters (also referred to as method parameters in the paper) and conditional parameters. Root parameters must be passed to the method class's constructor no matter what, and conditional parameters must only be passed if specific values for other parameters are set. For example, the GaussianProcessClassifier configuration has a single root parameter: ``kernel``. This must be set no matter what. Depending on how it's set, other parameters might need to be set as well. The format for conditions is as follows:
+
 .. code-block:: javascript
+
     {
         "root_parameter": {
             "root_param_value": ["conditional_parameters"]
@@ -76,6 +82,7 @@ There are two kinds of hyperparameters: root parameters (also referred to as met
 In ``gaussian_process.json``, there are three sets of parameters which are conditioned on the value of the root parameter ``kernel``:
 
 .. code-block:: javascript
+
     "root_parameters": ["kernel"],
 
     "conditions": {
@@ -107,11 +114,8 @@ Changing the Acquisition Function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The Gaussian Process Expected Improvement selection scheme makes use of an acquisition function to decide which parameter set will offer the best performance improvement.  The current acquisition function (seen below) uses the predicted performance and the confidence in that prediction to decide which hyperpartition to try next. This metric can be altered depending on the needs of a particular problem by modifying.
 
-.. literalinclude:: ../../atm/.py
-
 
 Adding a new hyperparameter Tuner
 ---------------------------------
 A parameter selector can be created by creating a class which inherits the ``btb.Tuner`` class. The class must have a ``select`` function which returns the chose parameters.  An example which uses the UCB1 algorithm to choose the hyperpartition is shown below.
 
-.. literalinclude:: ../../atm/.py

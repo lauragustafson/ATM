@@ -17,7 +17,7 @@ rest.
 
 You can tune the way ATM works, for example, by telling it which
 machine-learning methods to try, or by setting the method by which ATM searches
-through the hyperparameter space (using another library,
+through the hyperparameter space (using another [HDI Project]() library,
 [BTB](https://github.com/HDI-Project/btb)). You can also constrain ATM to find
 the best model within a limited amount of time or by training a limited amount
 of total models.

@@ -36,7 +36,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="atm 0.9 documentation" href="index.html"/>
-        <link rel="next" title="atm" href="code.html"/>
+        <link rel="next" title="Extending and contributing to ATM" href="code.html"/>
         <link rel="prev" title="Setup" href="setup.html"/> 
 
   
@@ -94,8 +94,11 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#data-format">Data Format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#creating-a-datarun-in-datahub">Creating a DataRun in DataHub</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-dataset">Creating a Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-format">Data format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-datarun-in-the-datahub">Creating a DataRun in the DataHub</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#configuration-file">Configuration File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#datarun-creation">DataRun Creation</a></li>
 </ul>
@@ -107,7 +110,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="code.html">atm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code.html">Extending and contributing to ATM</a></li>
 </ul>
 
             
@@ -173,11 +176,14 @@
             
   <div class="section" id="tutorial">
 <h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="creating-a-dataset">
+<h2>Creating a Dataset<a class="headerlink" href="#creating-a-dataset" title="Permalink to this headline">¶</a></h2>
+<p>A Dataset in ATM is defined by the following fields:</p>
 <div class="section" id="data-format">
-<h2>Data Format<a class="headerlink" href="#data-format" title="Permalink to this headline">¶</a></h2>
+<h3>Data format<a class="headerlink" href="#data-format" title="Permalink to this headline">¶</a></h3>
 <p>ATM takes data in CSV format where each CSV file needs to:</p>
 <ul class="simple">
-<li>Have the first line of the file be headers with strings as the feature names, and the class column named “class”. If the features aren’t named (ie, image or SVD or PCA data), then anything will do (but see below for a small script to generate nice feature names).</li>
+<li>Have the first line of the file be headers with strings as the feature names, and the class column named “class” (or configured otherwise in run_config.yaml). If the features aren’t named (ie, image or SVD or PCA data), then anything will do (but see below for a small script to generate nice feature names).</li>
 <li>Should have N + 1 rows (1 header + N examples)</li>
 <li>Should have D + 1 features (1 class label + D features per example)</li>
 </ul>
@@ -198,8 +204,9 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="creating-a-datarun-in-datahub">
-<h2>Creating a DataRun in DataHub<a class="headerlink" href="#creating-a-datarun-in-datahub" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="creating-a-datarun-in-the-datahub">
+<h2>Creating a DataRun in the DataHub<a class="headerlink" href="#creating-a-datarun-in-the-datahub" title="Permalink to this headline">¶</a></h2>
 <p>Once your data in the proper format, you can upload it to the DataHub for processing.</p>
 <div class="section" id="configuration-file">
 <h3>Configuration File<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h3>
@@ -270,7 +277,7 @@ Currently, the instances have to be terminated from the AWS Management Console.<
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="code.html" class="btn btn-neutral float-right" title="atm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="code.html" class="btn btn-neutral float-right" title="Extending and contributing to ATM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="setup.html" class="btn btn-neutral" title="Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

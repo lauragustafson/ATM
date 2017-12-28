@@ -47,7 +47,6 @@ Since the configuration file contains passwords, it's best to rename it to ``atm
 This is especially true if you plan to make changes to ATM and upload them to the repository.
 The git repository is setup to ignore all files in the ``config`` folder except ``atm.cnf.template``.
 
-.. literalinclude:: ../config/atm.cnf.template
 
 The name of the file must also be a environmental variable called ``ATM_CONFIG_FILE``.
 For example if the configuration file is called ``atm.cnf`` in the ``config`` directory of the root atm directory, then an environmental variable would created with the command::
