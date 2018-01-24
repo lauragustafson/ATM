@@ -2,6 +2,7 @@ import os
 from atm import PROJECT_ROOT
 # sample tuners
 from btb.tuning import Uniform as UniformTuner, GP, GPEi, GPEiVelocity
+from btb.tuning.gcp import  GCP, GCPEi, GCPEiVelocity
 # hyperpartition selectors
 from btb.selection import Uniform as UniformSelector, UCB1,\
                           BestKReward, BestKVelocity, RecentKReward,\
@@ -15,7 +16,7 @@ SCORE_TARGETS = ['cv', 'test', 'mu_sigma']
 BUDGET_TYPES = ['none', 'classifier', 'walltime']
 METHODS = ['logreg', 'svm', 'sgd', 'dt', 'et', 'rf', 'gnb', 'mnb', 'bnb',
            'gp', 'pa', 'knn', 'mlp', 'ada']
-TUNERS = ['uniform', 'gp', 'gp_ei', 'gp_eivel']
+TUNERS = ['uniform', 'gp', 'gp_ei', 'gp_eivel', 'gcp', 'gcp_ei', 'gcp_eivel']
 SELECTORS = ['uniform', 'ucb1', 'bestk', 'bestkvel', 'purebestkvel', 'recentk',
              'recentkvel', 'hieralg']
 DATARUN_STATUS = ['pending', 'running', 'complete']
@@ -35,6 +36,9 @@ TUNERS_MAP = {
     'gp': GP,
     'gp_ei': GPEi,
     'gp_eivel': GPEiVelocity,
+    'gcp': GCP,
+    'gcp_ei': GCPEi,
+    'gcp_eivel': GCPEiVelocity,
 }
 
 SELECTORS_MAP = {
